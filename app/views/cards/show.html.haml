@@ -1,9 +1,11 @@
--# - @card.breadcrumbs.each do |bc|
--#   = link_to bc.content, card_path(bc)
--#   > 
+- @card.breadcrumbs.each do |bc|
+  = link_to bc.content, card_path(bc)
+  > 
 
 = render partial: 'children', locals: {card: @card, revel: 1}
-= form_for(@new_card) do |f|
-  = f.text_field :content, {placeholder: "#{@card.content}に内容追加"}
-  = f.hidden_field :parent_id, value: @card.id
+
+%div{style: 'position:fixed; bottom:10px; width: 100%;'}
+  = form_for(@new_card) do |f|
+    = f.text_field :content, {placeholder: "「#{@card.content}」に内容追加"}
+    = f.hidden_field :parent_id, value: @card.id
 

@@ -25,4 +25,5 @@ group :development do
 end
 
 gem 'haml'
-
+gem 'ranked-model'
+gem 'jquery-ui-rails'
