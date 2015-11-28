@@ -3,4 +3,6 @@
 
 %ul
   - @cards.each do |card|
-    %li= link_to card.content, card_path(card)
+    %li
+      = image_tag card.user.icon_url, style: 'width: 25px;'
+      = link_to card.content, card_path(card)

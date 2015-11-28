@@ -27,3 +27,6 @@ end
 gem 'haml'
 gem 'ranked-model'
 gem 'jquery-ui-rails'
+
+gem 'omniauth-twitter'
+gem 'dotenv'
