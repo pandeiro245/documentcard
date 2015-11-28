@@ -1,0 +1,7 @@
+=content_tag("h#{revel}", card.content)
+-card.children.each do |child|
+  = render partial: 'children', locals: {card: child, revel: revel+1}
+= form_for(@new_card) do |f|
+  = f.text_field :content, {placeholder: "#{card.content}に内容追加"}
+  = f.hidden_field :parent_id, value: @card.id
+

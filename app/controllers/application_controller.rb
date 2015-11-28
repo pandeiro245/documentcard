@@ -8,7 +8,8 @@ class ApplicationController < ActionController::Base
     if user_id = cookies[:user_id]
       @user = User.find(user_id)
     else
-      @user = User.init!
+      @user = User.create!
+      @card = Card.create!(content: "user_#{@user.id}")
       cookies[:user_id] = @user.id
     end
   end
