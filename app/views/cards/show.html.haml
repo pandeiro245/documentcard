@@ -6,15 +6,31 @@
 %h1=@card.content
 - @cards.each do |card|
   %h2= link_to card.content, card_path(card)
-  %ul
-    - card.children.each do |card2|
-      %li=link_to card2.content, card_path(card2)
-    %li
-      = form_for(@new_card) do |f|
-        = f.text_field :content
-        = f.hidden_field :parent_id, value: card.id
+  - children = card.children.to_a
+  - list = []
+  - while children.present? do
+    - if children.first.has_child?
+      - if list.present?
+        %ul
+          - list.each do |c|
+            %li=link_to c.content, card_path(c)
+      %h3= link_to card.content, card_path(children.first)
+      - children.shift
+    - else
+      - list.push(children.shift)
 
+    - if list.present?
+      %ul
+        - list.each do |c|
+          %li=link_to c.content, card_path(c)
 
 = form_for(@new_card) do |f|
   = f.text_field :content
   = f.hidden_field :parent_id, value: @card.id
+
+- if @card.parent_id
+  %hr
+  = form_for(@card) do |f|
+    = f.text_field :parent_id
+
+
