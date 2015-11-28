@@ -3,7 +3,12 @@
   > 
   = link_to bc.content, card_path(bc)
 
-= render partial: 'children', locals: {card: @card, revel: 1}
+%hr
+%div{style: 'font-size: 30px;'}
+  - 1.upto(4).each do |level|
+    = link_to_if level != cookies[:level], level, "?level=#{level}"
+
+= render partial: 'children', locals: {card: @card, level: 1}
 
 %div{style: 'position:fixed; bottom:10px; width: 100%;'}
   = link_to "「#{@card.content}」でググる", "https://www.google.co.jp/search?q=#{@card.content}", target: '_blank', style: 'float: right; margin-right:40px;'
@@ -11,31 +16,4 @@
     = f.text_field :content, {placeholder: "「#{@card.content}」に内容追加"}
     = f.hidden_field :parent_id, value: @card.id
 
-%br
-%br
-%br
-%br
-%br
-%br
-%br
-%br
-%br
-%br
-%br
-%br
-%br
-%br
-%br
-%br
-%br
-%br
-%br
-%br
-%br
-%br
-%br
-%br
-%br
-%br
-%br
 

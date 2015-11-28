@@ -1,21 +1,22 @@
-- tag_name = card.has_child? ? "h#{revel}" : 'p'
+- tag_name = card.has_child? ? "h#{level}" : 'p'
 
 =content_tag tag_name, id: "head_#{card.id}" do
-  - if revel == 1
-    = image_tag card.user.icon_url, style: 'width: 25px;'
+  = image_tag card.user.icon_url, style: 'width: 25px;' if !card.parent_id || card.parent.user_id != card.user_id
   =link_to_if @card != card,  card.content, card_path(card)
 
-- if revel == 1 && card.has_grandchild? && card.children.count > 5
+- if level == 1 && card.has_grandchild? && card.children.count > 5 && false
   .page_menu
     %ul
       - @card.children.each do |card|
-        %li=link_to card.content, "#head_#{card.id}"
-
-- if card.has_grandchild?
+        %li
+          =link_to card.content, "#head_#{card.id}"
+- if card.has_grandchild? && cookies[:level].to_i > level
   -card.children.each do |child|
-    = render partial: 'children', locals: {card: child, revel: revel+1}
+    = render partial: 'children', locals: {card: child, level: level+1}
 - else
   %ul
     -card.children.each do |child|
-      %li=link_card(child)
+      %li
+        = image_tag child.user.icon_url, style: 'width: 25px;' if child.user_id != card.user_id
+        =link_card(child)
 
