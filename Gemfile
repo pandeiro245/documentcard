@@ -29,4 +29,4 @@ gem 'ranked-model'
 gem 'jquery-ui-rails'
 
 gem 'omniauth-twitter'
-gem 'dotenv'
+gem 'dotenv-rails'
