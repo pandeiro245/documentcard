@@ -13,7 +13,7 @@
 
 ActiveRecord::Schema.define(version: 20151128051939) do
 
-  create_table "lines", force: :cascade do |t|
+  create_table "cards", force: :cascade do |t|
     t.text     "content"
     t.integer  "parent_id"
     t.integer  "user_id"
@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 20151128051939) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "lines", ["user_id"], name: "index_lines_on_user_id"
+  add_index "cards", ["user_id"], name: "index_cards_on_user_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "name"

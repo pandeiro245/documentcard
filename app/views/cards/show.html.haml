@@ -1,0 +1,8 @@
+%h1=@card.content
+%ul
+  - @cards.each do |card|
+    %li= link_to card.content, card_path(card)
+
+= form_for(@new_card) do |f|
+  = f.text_field :content
+  = f.hidden_field :parent_id, value: @card.id
