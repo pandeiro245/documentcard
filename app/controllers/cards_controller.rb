@@ -14,13 +14,13 @@ class CardsController < ApplicationController
   def create
     @card = Card.new(card_params)
     if @card.save
-      redirect_to card_path(Card.first)
+      redirect_to card_path(@card.parent)
     end
   end
 
   def update
     if @card.update(card_params)
-      redirect_to card_path(Card.first)
+      redirect_to card_path(@card)
     end
   end
 

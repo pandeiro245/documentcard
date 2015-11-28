@@ -10,10 +10,10 @@ class Card < ActiveRecord::Base
   def breadcrumbs
     res = []
     parent = self.parent
-    #while parent.present? do
+    while parent.present? do
       res.push(parent)
-    #  paernt = parent.parent
-    #end
+      paernt = parent.parent
+    end
     res
   end
 end

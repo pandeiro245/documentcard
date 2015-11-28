@@ -1,0 +1,6 @@
+=content_tag "h#{revel}" do
+  =link_to_if @card != card,  card.content, card_path(card)
+
+-card.children.each do |child|
+  = render partial: 'children', locals: {card: child, revel: revel+1}
+

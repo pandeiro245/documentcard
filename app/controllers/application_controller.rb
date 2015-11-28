@@ -5,11 +5,13 @@ class ApplicationController < ActionController::Base
   before_filter :auto_login
 
   def auto_login
-    if user_id = cookies[:user_id]
-      @user = User.find(user_id)
-    else
-      @user = User.init!
-      cookies[:user_id] = @user.id
-    end
+    cookies[:user_id] = nil
+    #if user_id = cookies[:user_id]
+    #  @user = User.find(user_id)
+    #else
+    #  @user = User.create!
+    #  @card = Card.create!(content: "user_#{@user.id}")
+    #  cookies[:user_id] = @user.id
+    #end
   end
 end
