@@ -18,6 +18,12 @@ class CardsController < ApplicationController
     end
   end
 
+  def update
+    if @card.update(card_params)
+      redirect_to card_path(Card.first)
+    end
+  end
+
   private
     def set_card
       @card = Card.find(params[:id])
