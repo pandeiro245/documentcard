@@ -1,7 +1,7 @@
 class CardsController < ApplicationController
   before_action :set_card, only: [:show, :edit, :update, :destroy]
   def index
-    redirect_to card_path(Card.first)
+    @cards = Card.where(parent_id: nil)
   end
 
   def show

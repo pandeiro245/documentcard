@@ -1,6 +1,6 @@
+%h1 DocumentCard（ドキュメントカード）
+ドキュメントカードは頭の中をカード形式で書き出せば、それらが構造化されていくツールです
+
 %ul
   - @cards.each do |card|
     %li= link_to card.content, card_path(card)
-
-= form_for(@new_card) do |f|
-  = f.text_field :content
