@@ -1,7 +1,19 @@
+- if false
+  - @card.breadcrumbs.each do |bc|
+    = link_to bc.content, card_path(bc)
+    > 
+
 %h1=@card.content
-%ul
-  - @cards.each do |card|
-    %li= link_to card.content, card_path(card)
+- @cards.each do |card|
+  %h2= link_to card.content, card_path(card)
+  %ul
+    - card.children.each do |card2|
+      %li=link_to card2.content, card_path(card2)
+    %li
+      = form_for(@new_card) do |f|
+        = f.text_field :content
+        = f.hidden_field :parent_id, value: card.id
+
 
 = form_for(@new_card) do |f|
   = f.text_field :content

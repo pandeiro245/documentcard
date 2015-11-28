@@ -1,8 +1,7 @@
 class CardsController < ApplicationController
   before_action :set_card, only: [:show, :edit, :update, :destroy]
   def index
-    @cards = Card.where(parent_id: nil)
-    @new_card = Card.new
+    redirect_to card_path(Card.first)
   end
 
   def show
@@ -15,7 +14,7 @@ class CardsController < ApplicationController
   def create
     @card = Card.new(card_params)
     if @card.save
-      redirect_to card_path(@card)
+      redirect_to card_path(Card.first)
     end
   end
 
@@ -25,6 +24,6 @@ class CardsController < ApplicationController
     end
 
     def card_params
-      params.require(:card).permit(:content)
+      params.require(:card).permit(:content, :parent_id)
     end
 end
