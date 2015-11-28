@@ -9,6 +9,13 @@
 <body>
 
 <%= yield %>
+<div style='position:fixed; top:0; right:0;'>
+<% if cookies[:user_id].present? %>
+  <%= link_to 'ログアウト', '/logout' %>
+<% else %>
+  <%= link_to 'Twitterログイン', '/auth/twitter' %>
+<% end %>
+</div>
 
 </body>
 </html>

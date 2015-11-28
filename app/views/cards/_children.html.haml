@@ -1,5 +1,13 @@
-=content_tag "h#{revel}" do
+=content_tag "h#{revel}", id: "head_#{card.id}" do
+  - if revel == 1
+    = image_tag card.user.icon_url, style: 'width: 25px;'
   =link_to_if @card != card,  card.content, card_path(card)
+
+- if revel == 1 && card.has_grandchild? && card.children.count > 1
+  .page_menu
+    %ul
+      - @card.children.each do |card|
+        %li=link_to card.content, "#head_#{card.id}"
 
 - if card.has_grandchild?
   -card.children.each do |child|
@@ -7,5 +15,5 @@
 - else
   %ul
     -card.children.each do |child|
-      %li=child.content
+      %li=link_card(child)
 

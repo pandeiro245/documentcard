@@ -1,7 +1,7 @@
 class CardsController < ApplicationController
   before_action :set_card, only: [:show, :edit, :update, :destroy]
   def index
-    redirect_to card_path(Card.first)
+    @cards = Card.where(parent_id: nil)
   end
 
   def show
@@ -13,6 +13,7 @@ class CardsController < ApplicationController
 
   def create
     @card = Card.new(card_params)
+    @card.user_id = cookies[:user_id]
     if @card.save
       redirect_to card_path(@card.parent)
     end

@@ -1,11 +1,41 @@
+= link_to 'TOP', root_path
 - @card.breadcrumbs.each do |bc|
-  = link_to bc.content, card_path(bc)
   > 
+  = link_to bc.content, card_path(bc)
 
 = render partial: 'children', locals: {card: @card, revel: 1}
 
 %div{style: 'position:fixed; bottom:10px; width: 100%;'}
+  = link_to "「#{@card.content}」でググる", "https://www.google.co.jp/search?q=#{@card.content}", target: '_blank', style: 'float: right; margin-right:40px;'
   = form_for(@new_card) do |f|
     = f.text_field :content, {placeholder: "「#{@card.content}」に内容追加"}
     = f.hidden_field :parent_id, value: @card.id
+
+%br
+%br
+%br
+%br
+%br
+%br
+%br
+%br
+%br
+%br
+%br
+%br
+%br
+%br
+%br
+%br
+%br
+%br
+%br
+%br
+%br
+%br
+%br
+%br
+%br
+%br
+%br
 
