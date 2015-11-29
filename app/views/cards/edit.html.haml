@@ -1,0 +1,6 @@
+= form_for(@card) do |f|
+  = f.text_field :content, {value: @card.content}
+
+%hr
+= link_to '戻る', @card
+= link_to '削除', @card, method: :delete, data: { confirm: '本当に削除していいですか？' }
