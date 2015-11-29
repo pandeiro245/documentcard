@@ -1,8 +1,9 @@
-- tag_name = card.has_child? || card.h? ? "h#{level}" : 'p'
+- is_head_next = false
+- tag_name = card.has_child? || is_head || level == 1 ? "h#{level}" : 'p'
 
 =content_tag tag_name, id: "head_#{card.id}" do
   = image_tag card.user.icon_url, style: 'width: 25px;' if level==1 || !card.parent_id || card.parent.user_id != card.user_id
-  =link_to_if @card != card,  card.content, card_path(card)
+  = link_card card
 
 - if level == 1 && card.has_grandchild? && card.children.count > 5 && false
   .page_menu
@@ -12,7 +13,8 @@
           =link_to card.content, "#head_#{card.id}"
 - if card.has_grandchild? && cookies[:level].to_i > level
   -card.children.each do |child|
-    = render partial: 'children', locals: {card: child, level: level+1}
+    - is_head_next = true if child.has_child?
+    = render partial: 'children', locals: {card: child, level: level+1, is_head: is_head_next}
 - else
   %ul
     -card.children.each do |child|
