@@ -8,7 +8,7 @@ module ApplicationHelper
       target_card = Card.find(match[1])
       link_to target_card.content, card_path(target_card)
     elsif @card == card
-      link_to card.content, edit_card_path(card)
+      content_tag(:span, card.content) + link_to('編集', edit_card_path(card), {style: 'font-size: 13px; color: #999;'})
     else
       link_to card.content, card_path(card)
     end

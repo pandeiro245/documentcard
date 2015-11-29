@@ -9,6 +9,11 @@ class CardsController < ApplicationController
   end
 
   def show
+    if params[:exe] == 'totop'
+      @card.position = @card.parent.children.order('position asc').first.position - 1
+      @card.save!
+      redirect_to @card.parent
+    end
     if params[:level]
       cookies[:level] = params[:level]
     else
@@ -37,12 +42,6 @@ class CardsController < ApplicationController
     if @card.update(card_params)
       redirect_to card_path(@card)
     end
-  end
-
-  def sort
-    card = Card.find(params[:card_id])
-    card.update(card_params)
-    render nothing: true
   end
 
   def rand

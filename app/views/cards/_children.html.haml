@@ -1,15 +1,17 @@
 - is_head_next = false
+- index ||= 1
 - tag_name = card.has_child? || is_head || level == 1 ? "h#{level}" : 'p'
 
-=content_tag tag_name, id: "head_#{card.id}" do
+=content_tag tag_name, id: "head_#{card.id}", class: 'item', data: {model_name: 'card', update_url: card_path(card)}do
   = card_icon card if level==1 || !card.parent_id || card.parent.user_id != card.user_id
   = link_card card
+  =link_to('一番上へ', card_path(card, {exe: :totop}), {style: 'font-size: 13px; color: #999;'}) if index > 0 
 
 - render partial: 'menu', locals: {level: level, card: card} if false
 - if card.has_grandchild? && cookies[:level].to_i > level
-  -card.children.each do |child|
+  -card.children.each_with_index do |child, index|
     - is_head_next = true if child.has_child?
-    = render partial: 'children', locals: {card: child, level: level+1, is_head: is_head_next}
+    = render partial: 'children', locals: {card: child, level: level+1, is_head: is_head_next, index:index}
 - else
   - if card.children.count <= 1
     -card.children.each do |child|
