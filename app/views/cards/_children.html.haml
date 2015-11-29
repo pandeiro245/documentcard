@@ -5,7 +5,7 @@
 =content_tag tag_name, id: "head_#{card.id}", class: 'item', data: {model_name: 'card', update_url: card_path(card)}do
   = card_icon card if level==1 || !card.parent_id || card.parent.user_id != card.user_id
   = link_card card
-  =link_to('一番上へ', card_path(card, {exe: :totop}), {style: 'font-size: 13px; color: #999;'}) if index > 0 
+  =link_to('一番上へ', card_path(card, {exe: :totop}), {style: 'font-size: 13px; color: #999;'}) if index > 0 && level > 1
 
 - render partial: 'menu', locals: {level: level, card: card} if false
 - if card.has_grandchild? && cookies[:level].to_i > level

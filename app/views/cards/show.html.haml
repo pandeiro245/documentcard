@@ -1,10 +1,13 @@
+= link_to '合宿発表に関してはこちら！', '/cards/238', class: 'active'
+%br
 = link_to 'TOP', root_path
 - @card.breadcrumbs.each do |bc|
   > 
   = link_to bc.content, card_path(bc)
 
-%form{action: '/words', method: 'GET'}
-  %input{placeholder: '検索キーワード', name: 'q'}
+- if false
+  %form{action: '/words', method: 'GET'}
+    %input{placeholder: '検索キーワード', name: 'q'}
 
 %hr
 %div{style: 'font-size: 10px; color:#999;'}

@@ -4,6 +4,10 @@ a {
   padding-bottom: 3px;
 }
 
+a.active {
+  color: #ccf;
+}
+
 a:hover {
   border-bottom: 1px solid #ccc;
 }
