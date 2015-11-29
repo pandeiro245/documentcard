@@ -9,7 +9,7 @@
   - 1.upto(4).each do |level|
     = link_to_if level != cookies[:level].to_i,"【#{level}まで】", "?level=#{level}"
 
-= render partial: 'children', locals: {card: @card, level: 1}
+= render partial: 'children', locals: {card: @card, level: 1, is_head: false}
 
 %div{style: 'position:fixed; bottom:10px; width: 100%;'}
   = link_to "「#{@card.content}」でググる", "https://www.google.co.jp/search?q=#{@card.content}", target: '_blank', style: 'float: right; margin-right:40px;'
