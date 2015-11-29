@@ -1,0 +1,7 @@
+- if level == 1 && card.has_grandchild? && card.children.count > 5
+  .page_menu
+    %ul
+      - @card.children.each do |card|
+        %li
+          =link_to card.content, "#head_#{card.id}"
+
