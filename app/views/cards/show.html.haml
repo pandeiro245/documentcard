@@ -4,9 +4,10 @@
   = link_to bc.content, card_path(bc)
 
 %hr
-%div{style: 'font-size: 30px;'}
+%div{style: 'font-size: 10px; color:#999;'}
+  １つのページに表示する階層：
   - 1.upto(4).each do |level|
-    = link_to_if level != cookies[:level], level, "?level=#{level}"
+    = link_to_if level != cookies[:level].to_i,"【#{level}まで】", "?level=#{level}"
 
 = render partial: 'children', locals: {card: @card, level: 1}
 
@@ -16,4 +17,32 @@
     = f.text_field :content, {placeholder: "「#{@card.content}」に内容追加"}
     = f.hidden_field :parent_id, value: @card.id
 
-
+%br
+%br
+%br
+%br
+%br
+%br
+%br
+%br
+%br
+%br
+%br
+%br
+%br
+%br
+%br
+%br
+%br
+%br
+%br
+%br
+%br
+%br
+%br
+%br
+%br
+%br
+%br
+%br
+%br

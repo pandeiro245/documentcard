@@ -1,7 +1,7 @@
-- tag_name = card.has_child? ? "h#{level}" : 'p'
+- tag_name = card.has_child? || card.h? ? "h#{level}" : 'p'
 
 =content_tag tag_name, id: "head_#{card.id}" do
-  = image_tag card.user.icon_url, style: 'width: 25px;' if !card.parent_id || card.parent.user_id != card.user_id
+  = image_tag card.user.icon_url, style: 'width: 25px;' if level==1 || !card.parent_id || card.parent.user_id != card.user_id
   =link_to_if @card != card,  card.content, card_path(card)
 
 - if level == 1 && card.has_grandchild? && card.children.count > 5 && false

@@ -4,6 +4,17 @@ class Card < ActiveRecord::Base
   include RankedModel
   ranks :position
 
+  def style
+    case style_id
+    when 1
+      'h'
+    end
+  end
+
+  def h?
+    style == 'h'
+  end
+
   def children
     Card.where(parent_id: self.id).rank(:position)
   end
