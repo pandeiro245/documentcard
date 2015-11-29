@@ -2,6 +2,6 @@ class User < ActiveRecord::Base
   has_many :cards
 
   def card
-    Card.where(parent_id: nil, user: self)
+    Card.where(parent_id: nil, user: self).first
   end
 end

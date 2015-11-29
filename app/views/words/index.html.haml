@@ -1,0 +1,9 @@
+%ul
+  - @cards.each do |card|
+    %li
+      =card_icon card
+      =link_card card
+      - if card.parent
+        （
+        = link_card card.parent
+        ）

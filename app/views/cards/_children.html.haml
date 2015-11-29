@@ -2,7 +2,7 @@
 - tag_name = card.has_child? || is_head || level == 1 ? "h#{level}" : 'p'
 
 =content_tag tag_name, id: "head_#{card.id}" do
-  = image_tag card.user.icon_url, style: 'width: 25px;' if level==1 || !card.parent_id || card.parent.user_id != card.user_id
+  = card_icon card if level==1 || !card.parent_id || card.parent.user_id != card.user_id
   = link_card card
 
 - render partial: 'menu', locals: {level: level, card: card} if false
@@ -14,12 +14,12 @@
   - if card.children.count <= 1
     -card.children.each do |child|
       %p
-        = image_tag child.user.icon_url, style: 'width: 25px;' if child.user_id != card.user_id
+        = card_icon(child) if child.user_id != card.user_id
         = link_card(child)
   - else
     %ul
       -card.children.each do |child|
         %li
-          = image_tag child.user.icon_url, style: 'width: 25px;' if child.user_id != card.user_id
+          = card_icon(child) if child.user_id != card.user_id
           =link_card(child)
 
