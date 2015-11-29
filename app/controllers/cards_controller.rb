@@ -22,10 +22,15 @@ class CardsController < ApplicationController
 
   def create
     @card = Card.new(card_params)
-    @card.user_id = cookies[:user_id]
-    if @card.save
-      redirect_to card_path(@card.parent)
+    if @card.content.blank?
+      r = @card.parent.parent
+    else 
+      @card.user_id = cookies[:user_id]
+      if @card.save
+        r =  card_path(@card.parent)
+      end
     end
+    redirect_to r
   end
 
   def update
