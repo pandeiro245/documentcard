@@ -1,15 +1,18 @@
 class CardsController < ApplicationController
   before_action :set_card, only: [:show, :edit, :update, :destroy]
   def index
-    redirect_to Card.first
-    @cards = Card.where(parent_id: nil)
+    @user_cards = Card.where(
+      parent_id: nil
+    ).order('created_at desc').limit(20)
+    @cards = Card.order('created_at desc').limit(20)
+
   end
 
   def show
     if params[:level]
       cookies[:level] = params[:level]
     else
-      cookies[:level] ||= 1
+      cookies[:level] ||= 4
     end
     @cards = Card.where(parent_id: @card.id)
     @new_card = Card.new
