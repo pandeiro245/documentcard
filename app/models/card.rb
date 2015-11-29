@@ -4,6 +4,12 @@ class Card < ActiveRecord::Base
   include RankedModel
   ranks :position
 
+  def below! card_id
+    card = Card.find(card_id)
+    self.position = card.position + 1
+    self.save!
+  end
+
   def style
     case style_id
     when 1
