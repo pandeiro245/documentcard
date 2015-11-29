@@ -40,6 +40,18 @@ class CardsController < ApplicationController
     render nothing: true
   end
 
+  def rand
+    redirect_to Card.order("RAND()").first
+  end
+
+  def destroy
+    redirect_to root_path unless @card.parent
+    parent = @card.parent
+    @card.destroy
+    redirect_to card_url(parent), notice: 'successfully destroyed.'
+  end
+
+
   private
     def set_card
       @card = Card.find(params[:id])
