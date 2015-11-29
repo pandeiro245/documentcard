@@ -3,6 +3,9 @@
   > 
   = link_to bc.content, card_path(bc)
 
+%form{action: '/words', method: 'GET'}
+  %input{placeholder: '検索キーワード', name: 'q'}
+
 %hr
 %div{style: 'font-size: 10px; color:#999;'}
   １つのページに表示する階層：

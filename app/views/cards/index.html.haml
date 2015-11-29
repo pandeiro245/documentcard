@@ -12,14 +12,14 @@
 %ul
   - @user_cards.each do |card|
     %li
-      = image_tag card.user.icon_url, style: 'width: 25px;'
+      = card_icon card
       = link_to card.content, card_path(card)
 
 %h1 最近追加されたCard
 %ul
   - @cards.each do |card|
     %li
-      = image_tag card.user.icon_url, style: 'width: 25px;'
+      = card_icon card
       = link_card card
       - if card.parent
         （
